@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.max-padd-container{
+    @apply mx-auto max-w-[1440px] px-6 lg:px-12;
+}
+.flexBetween{
+    @apply flex items-center justify-between;
+}
+.flexCenter{
+    @apply flex items-center justify-center;
+}
+.flexStart{
+    @apply flex items-center justify-start;
+}
+.flexEnd{
+    @apply flex items-center justify-end;
+}
+@layer utilities{
+    .active-link{
+        @apply text-cyan-300 relative after:w-[40%] after:h-[2px] after:rounded-full after:bg-cyan-300 after:absolute after:bottom-1 after:right-0;
+    }
+}
