@@ -35,8 +35,12 @@ const Header = () => {
          {/* navbar */}
 
         <div className='flex-1'>
-        <Navbar menuOpened={menuOpened} toggleMenu={toggleMenu}
-        containerStyle={`${menuOpened?'flex flex-col gap-y-6 h-screen w-3/4 max-w-xs bg-white shadow-lg fixed top-0 left-0 px-6 py-8 z-40' :'hidden xl:flex gap-x-8 items-center'}`}/>
+        <Navbar 
+  menuOpened={menuOpened} 
+  toggleMenu={toggleMenu} // Correct prop name
+  containerStyles={`${menuOpened ? 'flex flex-col gap-y-6 h-screen w-3/4 max-w-xs bg-white shadow-lg fixed top-0 left-0 px-6  py-8 z-40' :'hidden xl:flex gap-x-8 items-center'}`}
+/>
+
         </div>
 
         {/* Logo */}

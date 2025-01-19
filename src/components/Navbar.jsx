@@ -4,7 +4,7 @@ import { FaRegWindowClose } from 'react-icons/fa'
 import { SiAtlassian, SiGooglehome, SiMaildotcom } from 'react-icons/si'
 import { Link, NavLink } from 'react-router'
 
-const Navbar = ({containerStyles,togglemenu,menuOpened}) => {
+const Navbar = ({containerStyles,toggleMenu,menuOpened}) => {
 
   const navItems = [
     {to: "/", label: "Home", icon: <SiGooglehome/>},
@@ -20,12 +20,13 @@ const Navbar = ({containerStyles,togglemenu,menuOpened}) => {
             Shoppire
           </Link>
           <FaRegWindowClose
-            onClick={toggleMenu}
-            className="text-2xl cursor-pointer text-gray-500"
-          />
+  onClick={toggleMenu} // Correct prop name
+  className="text-2xl self-end reltive left-8 cursor-pointer text-gray-500"
+/>
+
         </div>
       )}
-      <div className="flex gap-x-8"> {/* Add flex row and gap between items */}
+      <div className="xl:flex gap-x-8"> {/* Add flex row and gap between items */}
         {navItems.map(({ to, label, icon }) => (
           <NavLink
             key={label}
