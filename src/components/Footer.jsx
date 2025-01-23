@@ -75,8 +75,13 @@ const Footer = () => {
                 </div>
             </div>
          </div>
+         <div className='mt-10 text-center text-gray-100'>
+            <p>
+                Powered by <a href="#">Shoppire Team</a>
+            </p>
+         </div>
          <div>
-            
+
          </div>
         </div>
     </footer>
