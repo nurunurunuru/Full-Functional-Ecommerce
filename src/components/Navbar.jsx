@@ -38,7 +38,7 @@ const Navbar = ({containerStyles,toggleMenu,menuOpened}) => {
             }
           >
             {icon}
-            <span>{label}</span>
+            <h5 className='medium-16'>{label}</h5>
           </NavLink>
         ))}
       </div>
