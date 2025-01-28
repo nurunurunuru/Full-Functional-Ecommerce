@@ -10,11 +10,14 @@ import PlaceOrder from "./pages/PlaceOrder";
 import Product from "./pages/Product";
 import Verify from "./pages/Verify";
 import Collection from "./pages/Collection";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const App=()=>{
   return (
     <main className="overflow-hidden text-[#404040] bg-white">
+      <ToastContainer/>
     <Header/>
     <Routes>
       <Route path="" element={<Home/>}/>

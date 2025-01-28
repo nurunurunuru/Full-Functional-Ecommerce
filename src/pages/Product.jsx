@@ -9,7 +9,7 @@ import { TbShoppingBagPlus } from 'react-icons/tb';
 
 const Product = () => {
   const { productId } = useParams();
-  const { products, currency } = useContext(ShopContext);
+  const { products, currency, addToCart } = useContext(ShopContext);
   const [product, setProduct] = useState({});
   const [image, setImage] = useState('');
   const [size, setSize] = useState('');
@@ -41,7 +41,7 @@ const Product = () => {
       <div className="max-w-7xl mx-auto px-6 mt-8 xl:mt-10">
         <div className="flex flex-col xl:flex-row gap-12 bg-white shadow-lg rounded-3xl overflow-hidden">
           {/* Product Image Section */}
-          <div className="flex flex-col xl:flex-[0.5] p-6 bg-gray-50">
+          <div className="flex flex-col xl:flex-[0.5] p-6">
             <div className="flex gap-4 mb-4">
               {product.image.map((item, i) => (
                 <img
@@ -115,7 +115,7 @@ const Product = () => {
 
             {/* Buttons */}
             <div className="flex items-center gap-4 mb-6">
-              <button className="bg-tertiary text-white px-6 py-3 rounded-lg flex items-center gap-2 shadow hover:shadow-lg transition">
+              <button onClick={()=>addToCart(product._id, size)} className="bg-tertiary text-white px-6 py-3 rounded-lg flex items-center gap-2 shadow hover:shadow-lg transition">
                 Add to Cart
                 <TbShoppingBagPlus className="text-lg text-secondary" />
               </button>

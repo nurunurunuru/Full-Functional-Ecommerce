@@ -10,7 +10,7 @@ import { ShopContext } from '../context/ShopContext'
 
 const Header = () => {
 
-  const {setShowSearch} = useContext(ShopContext)
+  const {setShowSearch, getCartCount} = useContext(ShopContext)
   const [menuOpened, setMenuOpened] = useState(false)
   const [token,setToken] = useState(true)
   const navigate = useNavigate()
@@ -63,7 +63,7 @@ const Header = () => {
             </div>
             <Link to={'/cart'} className='flex relative'>
             <GiBeachBag className='text-[25px]'/>
-            <span className='bg-cyan-300 text-white medium-14 absolute right-0.5 -top-3 flexCenter w-5 h-5 rounded-full shadow-inner'>0</span>
+            <span className='bg-cyan-300 text-white medium-14 absolute right-0.5 -top-3 flexCenter w-5 h-5 rounded-full shadow-inner'>{getCartCount()}</span>
             </Link>
 
             <div className='group relative'>
