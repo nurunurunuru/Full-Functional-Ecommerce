@@ -53,6 +53,7 @@ import img49 from './product_49.png'
 import img50 from './product_50.png'
 import img51 from './product_51.png'
 import img52 from './product_52.png'
+import img53 from './product_53.png'
 
 
 export const products = [
@@ -674,6 +675,18 @@ export const products = [
         description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
         price: 350,
         image: [img52],
+        category: "Men",
+        subCategory: "Topwear",
+        sizes: ["S", "M", "L", "XL"],
+        date: 1716668445448,
+        popular: false
+    },
+    {
+        _id: "53",
+        name: "Men Slim Fit Relaxed Denim Shirt",
+        description: "A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.",
+        price: 350,
+        image: [img53],
         category: "Men",
         subCategory: "Topwear",
         sizes: ["S", "M", "L", "XL"],
