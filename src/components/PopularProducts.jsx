@@ -18,7 +18,7 @@ const PopularProducts = () => {
     <section className='max-padd-container py-16'>
         <Title title={'Popular Products'} titleStyles={'text-center'}/>
         {/* Container */}
-        <div className='grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8'>
+        <div className='grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8'>
             {popularProducts.map(product => (
               <div key={product.id}>
                 <Item product={product}/>
