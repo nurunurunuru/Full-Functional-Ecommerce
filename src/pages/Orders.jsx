@@ -1,9 +1,41 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ShopContext } from '../context/ShopContext';
 import Footer from '../components/Footer';
+import axios from 'axios';
 
 const Orders = () => {
-  const { products, currency } = useContext(ShopContext);
+  //const { backendUrl, token, currency } = useContext(ShopContext);
+  const { products, currency, } = useContext(ShopContext);
+
+  const [orderData, setOrderData] = useState([])
+
+  // const loadOrderData = async ()=>{
+  //   try {
+  // if(!token){
+  //   return null
+  // }   
+  // const response = await axios.post(backendUrl + '/api/order/userorders', {}, {headers:{token}})
+  // if(response.data.success){
+  //   let allOrdersItem = [];
+  //   response.data.orders.map((order)=>{
+  //     order.item?.map((item)=>{
+  //       item['status'] = order.status
+  //       item['payment'] = order.payment
+  //       item['paymentMethod'] = order.paymentMethod
+  //       item['date'] = order.date
+  //       allOrdersItem.push(item)
+  //     })
+  //   }) 
+  //   setOrderData(allOrdersItem.reverse())
+  // }
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
+
+  // useEffect(()=> {
+  //   loadOrderData()
+  // }, [token])
 
   return (
     <section className="py-10">
@@ -15,7 +47,7 @@ const Orders = () => {
         
         {/* Orders Container */}
         <div className="bg-white shadow-lg rounded-xl p-6">
-          {products.slice(1, 5).map((item, i) => (
+          {products.map((item, i) => (
             <div key={i} className="border-b border-gray-200 last:border-none pb-4 mb-4">
               <div className="flex flex-col sm:flex-row items-center gap-6">
                 {/* Image */}
@@ -43,7 +75,7 @@ const Orders = () => {
                   </div>
                 </div>
                 
-                {/* Track Order Button */}
+                {/* Track Order Button   onClick={loadOrderData} */}
                 <button className="px-4 py-2 text-sm font-medium text-white btn-secondary rounded-lg shadow-md hover:bg-green-500 transition-all">
                   Track Order
                 </button>
