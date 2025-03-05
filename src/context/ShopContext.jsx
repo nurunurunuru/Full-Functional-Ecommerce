@@ -141,6 +141,8 @@ const ShopContextProvider = (props) => {
   getProductsData()
  },[])
 
+ const [orderData, setOrderData] = useState([]); 
+
   const contextvalue = {
     products,
     currency,
@@ -160,6 +162,8 @@ const ShopContextProvider = (props) => {
     token,
     setToken,
     backendUrl,
+    orderData,       
+    setOrderData,
   };
 
   return (

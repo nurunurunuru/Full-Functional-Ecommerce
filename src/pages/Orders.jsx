@@ -4,38 +4,38 @@ import Footer from '../components/Footer';
 import axios from 'axios';
 
 const Orders = () => {
-  //const { backendUrl, token, currency } = useContext(ShopContext);
-  const { products, currency, } = useContext(ShopContext);
+  // const { backendUrl, token, currency } = useContext(ShopContext);
+  const { products, currency, backendUrl, token, orderData, setOrderData  } = useContext(ShopContext);
 
-  const [orderData, setOrderData] = useState([])
+  // const [orderData, setOrderData] = useState([])
 
-  // const loadOrderData = async ()=>{
-  //   try {
-  // if(!token){
-  //   return null
-  // }   
-  // const response = await axios.post(backendUrl + '/api/order/userorders', {}, {headers:{token}})
-  // if(response.data.success){
-  //   let allOrdersItem = [];
-  //   response.data.orders.map((order)=>{
-  //     order.item?.map((item)=>{
-  //       item['status'] = order.status
-  //       item['payment'] = order.payment
-  //       item['paymentMethod'] = order.paymentMethod
-  //       item['date'] = order.date
-  //       allOrdersItem.push(item)
-  //     })
-  //   }) 
-  //   setOrderData(allOrdersItem.reverse())
-  // }
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
+  const loadOrderData = async ()=>{
+    try {
+  if(!token){
+    return null
+  }   
+  const response = await axios.post(backendUrl + '/api/order/userorders', {}, {headers:{token}})
+  if(response.data.success){
+    let allOrdersItem = [];
+    response.data.orders.map((order)=>{
+      order.item?.map((item)=>{
+        item['status'] = order.status
+        item['payment'] = order.payment
+        item['paymentMethod'] = order.paymentMethod
+        item['date'] = order.date
+        allOrdersItem.push(item)
+      })
+    }) 
+    setOrderData(allOrdersItem.reverse())
+  }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
-  // useEffect(()=> {
-  //   loadOrderData()
-  // }, [token])
+  useEffect(()=> {
+    loadOrderData()
+  }, [token])
 
   return (
     <section className="py-10">
@@ -76,7 +76,7 @@ const Orders = () => {
                 </div>
                 
                 {/* Track Order Button   onClick={loadOrderData} */}
-                <button className="px-4 py-2 text-sm font-medium text-white btn-secondary rounded-lg shadow-md hover:bg-green-500 transition-all">
+                <button onClick={loadOrderData} className="px-4 py-2 text-sm font-medium text-white btn-secondary rounded-lg shadow-md hover:bg-green-500 transition-all">
                   Track Order
                 </button>
               </div>
