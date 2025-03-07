@@ -5,33 +5,43 @@ import axios from 'axios';
 
 const Orders = () => {
   // const { backendUrl, token, currency } = useContext(ShopContext);
-  const { products, currency, backendUrl, token, orderData, setOrderData  } = useContext(ShopContext);
+  const {  currency, backendUrl, token  } = useContext(ShopContext);
 
-  // const [orderData, setOrderData] = useState([])
+  const [orderData, setOrderData] = useState([])
 
-  const loadOrderData = async ()=>{
+  const loadOrderData = async () => {
     try {
-  if(!token){
-    return null
-  }   
-  const response = await axios.post(backendUrl + '/api/order/userorders', {}, {headers:{token}})
-  if(response.data.success){
-    let allOrdersItem = [];
-    response.data.orders.map((order)=>{
-      order.item?.map((item)=>{
-        item['status'] = order.status
-        item['payment'] = order.payment
-        item['paymentMethod'] = order.paymentMethod
-        item['date'] = order.date
-        allOrdersItem.push(item)
-      })
-    }) 
-    setOrderData(allOrdersItem.reverse())
-  }
+      if (!token) {
+        console.log("Token is missing:", token);
+        return;
+      }
+  
+      const response = await axios.post(backendUrl + '/api/order/userorders', 
+        { userId: localStorage.getItem('userId') }, // Ensure userId is passed
+        { headers: { token } }
+      );
+  
+      console.log("Orders response:", response.data);
+  
+      if (response.data.success) {
+        let allOrdersItem = [];
+        response.data.orders.map((order) => {
+          order.items.map((item) => {  // Check if 'items' exists
+            item['status'] = order.status;
+            item['payment'] = order.payment;
+            item['paymentMethod'] = order.paymentMethod;
+            item['date'] = order.date;
+            allOrdersItem.push(item);
+          });
+        });
+  
+        setOrderData([...allOrdersItem.reverse()]);
+      }
     } catch (error) {
-      console.log(error)
+      console.log("Error loading orders:", error);
     }
-  }
+  };
+  
 
   useEffect(()=> {
     loadOrderData()
@@ -47,7 +57,7 @@ const Orders = () => {
         
         {/* Orders Container */}
         <div className="bg-white shadow-lg rounded-xl p-6">
-          {products.map((item, i) => (
+          {orderData.map((item, i) => (
             <div key={i} className="border-b border-gray-200 last:border-none pb-4 mb-4">
               <div className="flex flex-col sm:flex-row items-center gap-6">
                 {/* Image */}

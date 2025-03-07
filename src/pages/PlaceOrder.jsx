@@ -62,6 +62,18 @@ const PlaceOrder = () => {
             toast.error(response.data.message)
           }
           break;
+
+          case 'stripe':
+          const responseStripe = await axios.post(backendUrl + '/api/order/stripe', orderData, { headers:{ token } })
+          if(responseStripe.data.success){
+            const {session_url} = responseStripe.data
+            window.location.replace(session_url)
+          }else{
+            toast.error(responseStripe.data.message)
+          }
+
+          break;
+
           default:
             break;
       }
@@ -173,7 +185,7 @@ const PlaceOrder = () => {
           <div className='my-6'>
             <h3 className='bold-20 mb-5'>Payment <span className='text-secondary'>Method</span></h3>
             <div className='flex gap-3'>
-              <div onClick={()=> setMethod('stripe')} className={`${method === 'cod' ? "text-secondary !font-bold" : ""} btn-light !py-1 cursor-pointer`}>Stripe</div>
+              <div onClick={()=> setMethod('stripe')} className={`${method === 'stripe' ? "text-secondary !font-bold" : ""} btn-light !py-1 cursor-pointer`}>Stripe</div>
               <div onClick={()=> setMethod('cod')} className={`${method === 'cod' ? "text-secondary !font-bold" : ""} btn-light !py-1 cursor-pointer`}>Cash On Delivery</div>
             </div>
           </div>
